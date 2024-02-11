@@ -18,7 +18,7 @@ const Home = () => {
 						font.className
 					)}
 				>
-					Auth
+					🔐Auth
 				</h1>
 				<p className="text-white text-lg">A Simple authentication Service</p>
 				<div>
