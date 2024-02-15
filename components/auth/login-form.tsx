@@ -53,7 +53,11 @@ export const LoginForm = () => {
 			showSocial
 		>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					method="post"
+					className="space-y-6"
+				>
 					<div className="space-y-4">
 						<FormField
 							control={form.control}
@@ -94,7 +98,7 @@ export const LoginForm = () => {
 					</div>
 					<FormError message={error} />
 					<FormSuccess message={success} />
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full" disabled={isPending}>
 						Login
 					</Button>
 				</form>

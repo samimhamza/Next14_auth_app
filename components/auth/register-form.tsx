@@ -18,8 +18,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
-import { login } from "@/actions/login";
 import { useState, useTransition } from "react";
+import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
 	const [error, setError] = useState<string | undefined>("");
@@ -39,7 +39,7 @@ export const RegisterForm = () => {
 		setError("");
 		setSuccess("");
 		startTransition(() => {
-			login(values).then((data) => {
+			register(values).then((data) => {
 				setError(data.error);
 				setSuccess(data.success);
 			});
@@ -54,7 +54,11 @@ export const RegisterForm = () => {
 			showSocial
 		>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					method="post"
+					className="space-y-6"
+				>
 					<div className="space-y-4">
 						<FormField
 							control={form.control}
@@ -112,7 +116,7 @@ export const RegisterForm = () => {
 					</div>
 					<FormError message={error} />
 					<FormSuccess message={success} />
-					<Button type="submit" className="w-full">
+					<Button type="submit" className="w-full" disabled={isPending}>
 						Create an account
 					</Button>
 				</form>
